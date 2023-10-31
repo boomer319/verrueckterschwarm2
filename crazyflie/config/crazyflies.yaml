@@ -3,13 +3,13 @@ robots:
   cf01:
     enabled: true
     uri: radio://0/80/2M/E7E7E7E701
-    initial_position: [-0.2, -0.2, 0]
+    initial_position: [-0.4, -0.4, 0] # [-0.8, 0, 0] 
     type: cf21  # see robot_types
     # firmware_params:
     #   kalman:
     #     pNAcc_xy: 1.0 # default 0.5
     # firmware_logging:
-    #   enabled: true
+    #   enabled: false
     #   custom_topics:
     #     topic_name3: 
     #       frequency: 1
@@ -17,13 +17,13 @@ robots:
   cf02:
     enabled: true
     uri: radio://0/80/2M/E7E7E7E702
-    initial_position: [-0.2, 0.2, 0]
+    initial_position: [-0.4, 0.4, 0]
     type: cf21  # see robot_types
     # firmware_params:
     #   kalman:
     #     pNAcc_xy: 1.0 # default 0.5
     # firmware_logging:
-    #   enabled: true
+    #   enabled: false
     #   custom_topics:
     #     topic_name3: 
     #       frequency: 1
@@ -31,13 +31,13 @@ robots:
   cf03:
     enabled: true
     uri: radio://0/80/2M/E7E7E7E703
-    initial_position: [0.2, 0.2, 0]
+    initial_position: [0.4, 0.4, 0]
     type: cf21  # see robot_types
     # firmware_params:
     #   kalman:
     #     pNAcc_xy: 1.0 # default 0.5
     # firmware_logging:
-    #   enabled: true
+    #   enabled: false
     #   custom_topics:
     #     topic_name3: 
     #       frequency: 1
@@ -45,69 +45,69 @@ robots:
   cf04:
     enabled: true
     uri: radio://0/80/2M/E7E7E7E704
-    initial_position: [0.2, -0.2, 0]
+    initial_position: [0.4, -0.4, 0]
     type: cf21  # see robot_types
     # firmware_params:
     #   kalman:
     #     pNAcc_xy: 1.0 # default 0.5
     # firmware_logging:
-    #   enabled: true
+    #   enabled: false
     #   custom_topics:
     #     topic_name3: 
     #       frequency: 1
     #       vars: ["acc.x", "acc.y", "acc.z"]
   cf05:
-    enabled: false
+    enabled: true
     uri: radio://0/80/2M/E7E7E7E705
-    initial_position: [0, 0, 0]
+    initial_position: [0, -0.8, 0]
     type: cf21  # see robot_types
     # firmware_params:
     #   kalman:
     #     pNAcc_xy: 1.0 # default 0.5
     # firmware_logging:
-    #   enabled: true
+    #   enabled: false
     #   custom_topics:
     #     topic_name3: 
     #       frequency: 1
     #       vars: ["acc.x", "acc.y", "acc.z"]
   cf06:
-    enabled: false
+    enabled: true
     uri: radio://0/80/2M/E7E7E7E706
-    initial_position: [0, 0, 0]
+    initial_position: [-0.8, 0, 0] # [-0.4, -0.4, 0]
     type: cf21  # see robot_types
     # firmware_params:
     #   kalman:
     #     pNAcc_xy: 1.0 # default 0.5
     # firmware_logging:
-    #   enabled: true
+    #   enabled: false
     #   custom_topics:
     #     topic_name3: 
     #       frequency: 1
     #       vars: ["acc.x", "acc.y", "acc.z"]
   cf07:
-    enabled: false
+    enabled: true
     uri: radio://0/80/2M/E7E7E7E707
-    initial_position: [0, 0, 0]
+    initial_position: [0, 0.8, 0]
     type: cf21  # see robot_types
     # firmware_params:
     #   kalman:
     #     pNAcc_xy: 1.0 # default 0.5
     # firmware_logging:
-    #   enabled: true
+    #   enabled: false
     #   custom_topics:
     #     topic_name3: 
     #       frequency: 1
     #       vars: ["acc.x", "acc.y", "acc.z"]
   cf08:
-    enabled: false
+    enabled: true
     uri: radio://0/80/2M/E7E7E7E708
-    initial_position: [0, 0, 0]
+    initial_position: [0.8, 0, 0]
     type: cf21  # see robot_types
     # firmware_params:
     #   kalman:
     #     pNAcc_xy: 1.0 # default 0.5
     # firmware_logging:
-    #   enabled: true
+    #   enabled: false
     #   custom_topics:
     #     topic_name3: 
     #       frequency: 1
@@ -123,8 +123,8 @@ robot_types:
       dynamics: default
     big_quad: false
     battery:
-      voltage_warning: 3.6  # V
-      voltage_critical: 3.4 # V
+      voltage_warning: 3.7  # V
+      voltage_critical: 3.5 # V
     # firmware_params:
     #   kalman:
     #     pNAcc_xy: 1.0 # default 0.5
@@ -148,10 +148,10 @@ all:
      # remove to disable default topic
       pose:
         frequency: 60 # Hz
-    #custom_topics:
-    #  topic_name1:
-    #    frequency: 10 # Hz
-    #    vars: ["stateEstimateZ.x", "stateEstimateZ.y", "stateEstimateZ.z", "pm.vbat"]
+      # custom_topics:
+      #   topic_name1:
+      #     frequency: 10 # Hz
+      #     vars: [stateEstimateZ.x, stateEstimateZ.y, stateEstimateZ.z, pm.vbat]
     #  topic_name2:
     #    frequency: 1 # Hz
     #    vars: ["stabilizer.roll", "stabilizer.pitch", "stabilizer.yaw"]
@@ -162,7 +162,15 @@ all:
       enHighLevel: 1
     stabilizer:
       estimator: 2 # 1: complementary, 2: kalman
-      controller: 2 # 1: PID, 2: mellinger
+      controller: 1 # 1: PID, 2: mellinger
+    pid_rate:
+      roll_kp: 1000  # 250
+      roll_ki: 3500 # 500
+      roll_kd: 17 # 2.5
+      pitch_kp: 1000 # 1000
+      pitch_ki: 3500 # 3500
+      pitch_kd: 17 # 17
+
     # ring:
     #   effect: 16 # 6: double spinner, 7: solid color, 16: packetRate
     #   solidBlue: 255 # if set to solid color

@@ -63,12 +63,12 @@ if __name__ == '__main__':
 
 	# compute absolute pixel coordinates from the initial positions
 	positions = [node["initial_position"] for node in cfg["robots"].values()]
-	DOWN_DIR = [-1, 0]
-	RIGHT_DIR = [0, -1]
+	DOWN_DIR = [-4, 0]
+	RIGHT_DIR = [0, -4]
 	def dot(a, b):
 		return a[0] * b[0] + a[1] * b[1]
-	pixel_x = [120 * dot(pos, RIGHT_DIR) for pos in positions]
-	pixel_y = [120 * dot(pos, DOWN_DIR) for pos in positions]
+	pixel_x = [60 * dot(pos, RIGHT_DIR) for pos in positions]
+	pixel_y = [60 * dot(pos, DOWN_DIR) for pos in positions]
 	xmin, ymin = min(pixel_x), min(pixel_y)
 	xmax, ymax = max(pixel_x), max(pixel_y)
 
@@ -77,7 +77,7 @@ if __name__ == '__main__':
 	top.title('Crazyflie Chooser')
 
 	# construct the frame containing the absolute-positioned checkboxes
-	width = xmax - xmin + 50 # account for checkbox + text width
+	width = xmax - xmin + 70 # account for checkbox + text width
 	height = ymax - ymin + 50 # account for checkbox + text height
 	frame = Tkinter.Frame(top, width=width, height=height)
 

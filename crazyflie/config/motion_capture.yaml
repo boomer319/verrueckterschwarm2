@@ -1,9 +1,9 @@
 /motion_capture_tracking:
   ros__parameters:
     type: "optitrack"
-    hostname: "192.168.0.103"
+    hostname: "192.168.137.1"
 
-    mode: "libobjecttracker" # one of motionCapture,libRigidBodyTracker
+    mode: "libRigidBodyTracker" # one of motionCapture,libRigidBodyTracker
 
     topics:
       poses:
@@ -22,7 +22,7 @@
       default_single_marker:
         offset: [0.0, 0.0, 0.0]
         points:
-          p0: [0.0, 0.0, -0.025]
+          p0: [0.0, 0.0, -0.015]
       line_fl_m_rr:
         offset: [0.0, 0.0, 0.0]
         points:
@@ -53,7 +53,7 @@
 
     dynamics_configurations:
       default:
-        max_velocity: [2, 2, 3] # m/s
+        max_velocity: [1, 1, 2] # m/s 2,2,3
         max_angular_velocity: [20, 20, 10] # rad/s
         max_roll: 1.4 #rad
         max_pitch: 1.4 #rad

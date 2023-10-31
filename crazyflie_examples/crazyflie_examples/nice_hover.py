@@ -20,7 +20,7 @@ def main():
     print("press button to continue...")
     swarm.input.waitUntilButtonPressed()
 
-    allcfs.land(targetHeight=0.02, duration=1.0+Z)
+    allcfs.land(targetHeight=0.02, duration=2.0+Z)
     timeHelper.sleep(1.0+Z)
 
 if __name__ == "__main__":
