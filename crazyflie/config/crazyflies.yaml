@@ -145,7 +145,7 @@ all:
   firmware_logging:
     enabled: true
     default_topics:
-     # remove to disable default topic
+    # remove to disable default topic
       pose:
         frequency: 60 # Hz
       # custom_topics:
