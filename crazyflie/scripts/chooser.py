@@ -270,7 +270,7 @@ if __name__ == '__main__':
 		while True:
 			# rely on GIL
 			checkBattery()
-			time.sleep(10.0) # seconds
+			time.sleep(1.0) # seconds
 	# checkBatteryThread = threading.Thread(target=checkBatteryLoop)
 	# checkBatteryThread.daemon = True # so it exits when the main thread exit
 	# checkBatteryThread.start()

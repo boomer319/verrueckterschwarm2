@@ -3,7 +3,7 @@ robots:
   cf01:
     enabled: true
     uri: radio://0/80/2M/E7E7E7E701
-    initial_position: [-0.4, -0.4, 0] # [-0.8, 0, 0] 
+    initial_position: [-0.4, -0.4, 0] # [-0.8, 0, 0]
     type: cf21  # see robot_types
     # firmware_params:
     #   kalman:
@@ -15,7 +15,7 @@ robots:
     #       frequency: 1
     #       vars: ["acc.x", "acc.y", "acc.z"]
   cf02:
-    enabled: true
+    enabled: false
     uri: radio://0/80/2M/E7E7E7E702
     initial_position: [-0.4, 0.4, 0]
     type: cf21  # see robot_types
@@ -29,7 +29,7 @@ robots:
     #       frequency: 1
     #       vars: ["acc.x", "acc.y", "acc.z"]
   cf03:
-    enabled: true
+    enabled: false
     uri: radio://0/80/2M/E7E7E7E703
     initial_position: [0.4, 0.4, 0]
     type: cf21  # see robot_types
@@ -43,7 +43,7 @@ robots:
     #       frequency: 1
     #       vars: ["acc.x", "acc.y", "acc.z"]
   cf04:
-    enabled: true
+    enabled: false
     uri: radio://0/80/2M/E7E7E7E704
     initial_position: [0.4, -0.4, 0]
     type: cf21  # see robot_types
@@ -57,7 +57,7 @@ robots:
     #       frequency: 1
     #       vars: ["acc.x", "acc.y", "acc.z"]
   cf05:
-    enabled: true
+    enabled: false
     uri: radio://0/80/2M/E7E7E7E705
     initial_position: [0, -0.8, 0]
     type: cf21  # see robot_types
@@ -71,7 +71,7 @@ robots:
     #       frequency: 1
     #       vars: ["acc.x", "acc.y", "acc.z"]
   cf06:
-    enabled: true
+    enabled: false
     uri: radio://0/80/2M/E7E7E7E706
     initial_position: [-0.8, 0, 0] # [-0.4, -0.4, 0]
     type: cf21  # see robot_types
@@ -85,7 +85,7 @@ robots:
     #       frequency: 1
     #       vars: ["acc.x", "acc.y", "acc.z"]
   cf07:
-    enabled: true
+    enabled: false
     uri: radio://0/80/2M/E7E7E7E707
     initial_position: [0, 0.8, 0]
     type: cf21  # see robot_types
@@ -99,7 +99,7 @@ robots:
     #       frequency: 1
     #       vars: ["acc.x", "acc.y", "acc.z"]
   cf08:
-    enabled: true
+    enabled: false
     uri: radio://0/80/2M/E7E7E7E708
     initial_position: [0.8, 0, 0]
     type: cf21  # see robot_types
@@ -124,7 +124,7 @@ robot_types:
     big_quad: false
     battery:
       voltage_warning: 3.7  # V
-      voltage_critical: 3.5 # V
+      voltage_critical: 3.3 # V
     # firmware_params:
     #   kalman:
     #     pNAcc_xy: 1.0 # default 0.5
@@ -164,12 +164,14 @@ all:
       estimator: 2 # 1: complementary, 2: kalman
       controller: 1 # 1: PID, 2: mellinger
     pid_rate:
-      roll_kp: 1000  # 250
-      roll_ki: 3500 # 500
-      roll_kd: 17 # 2.5
-      pitch_kp: 1000 # 1000
-      pitch_ki: 3500 # 3500
-      pitch_kd: 17 # 17
+      roll_kp: 1000  # 250 # 600 # 1000
+      roll_ki: 3500 # 500 # 2500 # 3500
+      roll_kd: 17 # 2.5 # 10 # 17
+      pitch_kp: 1000
+      pitch_ki: 3500
+      pitch_kd: 17
+    colAv:
+      enable: 1
 
     # ring:
     #   effect: 16 # 6: double spinner, 7: solid color, 16: packetRate
