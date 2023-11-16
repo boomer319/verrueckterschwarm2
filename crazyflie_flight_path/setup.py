@@ -15,12 +15,15 @@ setup(
     zip_safe=True,
     maintainer='aurelio',
     maintainer_email='aureliostrazzeri@gmail.com',
-    description='TODO: Package description',
+    description='Accumulation of scripts to test out different methods of coordinating the crazyflies movement',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'flight_path = crazyflie_flight_path.flight_path:main'
+            'waypoint_mission_csv = crazyflie_flight_path.waypoint_mission_csv:main'
+            'waypoint_mission_goTo = crazyflie_flight_path.waypoint_mission_goTo:main'
+            'waypoint_mission_goTo_colAv = crazyflie_flight_path.waypoint_mission_goTo_colAv:main'
+            'waypoint_mission_cmdPosition = crazyflie_flight_path.waypoint_mission_cmdPosition:main'
         ],
     },
 )

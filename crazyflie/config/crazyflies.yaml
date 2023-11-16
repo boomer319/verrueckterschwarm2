@@ -15,7 +15,7 @@ robots:
     #       frequency: 1
     #       vars: ["acc.x", "acc.y", "acc.z"]
   cf02:
-    enabled: false
+    enabled: true
     uri: radio://0/80/2M/E7E7E7E702
     initial_position: [-0.4, 0.4, 0]
     type: cf21  # see robot_types
@@ -170,8 +170,6 @@ all:
       pitch_kp: 1000
       pitch_ki: 3500
       pitch_kd: 17
-    colAv:
-      enable: 1
 
     # ring:
     #   effect: 16 # 6: double spinner, 7: solid color, 16: packetRate

@@ -26,7 +26,7 @@ def main():
         pos_goal = np.array([-1.0, 1.0, 0.1])
         cf.cmdPosition(pos_goal, 0.0)
 
-    # drone falls out of the air after reaching position...
+    # ERROR: drone falls out of the air after reaching position
         
     # # possibility to do an emergency glide to the ground after command is sent
     # print("press button in the next 5 seconds to declare emergency")
@@ -51,12 +51,12 @@ def main():
     # #         cf.emergency()
     # #     timeHelper.sleep(1)
 
-    # print("press button to land")
-    # swarm.input.waitUntilButtonPressed()
+    print("press button to land")
+    swarm.input.waitUntilButtonPressed()
 
-    # allcfs.land(targetHeight=0.02, duration=T)
+    allcfs.land(targetHeight=0.02, duration=T)
 
-    # timeHelper.sleep(T)
+    timeHelper.sleep(T)
 
 if __name__ == "__main__":
     main()
