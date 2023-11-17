@@ -10,15 +10,7 @@ def main():
     timeHelper = swarm.timeHelper
     allcfs = swarm.allcfs
 
-    allcfs.setParam("colAv.enable", 1)
-
-    allcfs.setParam("colAv.ellipsoidX", 0.10)
-    allcfs.setParam("colAv.ellipsoidY", 0.10)
-    allcfs.setParam("colAv.ellipsoidZ", 0.3)
-
-    timeHelper.sleep(10.0)
-
-    # for the flight part
+    # takeoff
     allcfs.takeoff(targetHeight=0.5, duration=3.0)
     timeHelper.sleep(3.0)
 
@@ -28,41 +20,29 @@ def main():
         cf.goTo(pos, 0, 3.0)
     timeHelper.sleep(3.0)
 
-    # swap positions
+    # go to start of course
     cf1 = allcfs.crazyflies[0]
     cf2 = allcfs.crazyflies[1]
 
-    pos1 = np.array(cf2.initialPosition) + np.array([0, 0, 0.5])
+    pos1 = np.array(cf1.initialPosition) + np.array([-1, 0, 1])
     cf1.goTo(pos1, 0, 5.0)
 
-    pos2 = np.array(cf1.initialPosition) + np.array([0, 0, 0.5])
+    pos2 = np.array(cf2.initialPosition) + np.array([-1, 0, 1])
     cf2.goTo(pos2, 0, 5.0)
 
     timeHelper.sleep(5.0)
 
-    # swap positions (again)
+    # go to end of course
     cf1 = allcfs.crazyflies[0]
     cf2 = allcfs.crazyflies[1]
 
-    pos1 = np.array(cf1.initialPosition) + np.array([0, 0, 0.5])
-    cf1.goTo(pos1, 0, 5.0)
+    pos1 = np.array(cf1.initialPosition) + np.array([1, 0, 1])
+    cf1.goTo(pos1, np.pi, 5.0)
 
-    pos2 = np.array(cf2.initialPosition) + np.array([0, 0, 0.5])
-    cf2.goTo(pos2, 0, 5.0)
+    pos2 = np.array(cf2.initialPosition) + np.array([1, 0, 1])
+    cf2.goTo(pos2, np.pi, 5.0)
 
     timeHelper.sleep(5.0)
-
-    # meet at one point
-    cf1 = allcfs.crazyflies[0]
-    cf2 = allcfs.crazyflies[1]
-
-    pos1 = np.array(cf1.initialPosition) + np.array([-2, 0, 0.5])
-    cf1.goTo(pos1, 0, 5.0)
-
-    pos2 = pos1
-    cf2.goTo(pos2, 0, 5.0)
-
-    timeHelper.sleep(8.0)
 
     # go home
     cf1 = allcfs.crazyflies[0]
@@ -75,19 +55,8 @@ def main():
     cf2.goTo(pos2, 0, 5.0)
 
     timeHelper.sleep(5.0)
-    
-    # moving cf2 into cf1
-    cf1 = allcfs.crazyflies[0]
-    cf2 = allcfs.crazyflies[1]
 
-    pos1 = np.array(cf1.initialPosition) + np.array([0, 0, 0.5])
-    cf1.goTo(pos1, 0, 5.0)
-
-    pos2 = pos1
-    cf2.goTo(pos2, 0, 5.0)
-
-    timeHelper.sleep(8.0)
-
+    # land
     allcfs.land(targetHeight=0.02, duration=3.0)
     timeHelper.sleep(3.0)
 

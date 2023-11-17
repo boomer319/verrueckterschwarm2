@@ -170,6 +170,11 @@ all:
       pitch_kp: 1000
       pitch_ki: 3500
       pitch_kd: 17
+    colAv:
+      enable: 1
+      ellipsoidX: 0.10
+      ellipsoidY: 0.10
+      ellipsoidZ: 0.50
 
     # ring:
     #   effect: 16 # 6: double spinner, 7: solid color, 16: packetRate
