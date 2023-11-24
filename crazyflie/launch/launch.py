@@ -50,7 +50,7 @@ def generate_launch_description():
                     "dynamics": type["motion_capture"]["dynamics"],
                 }
 
-    # copy relevent settings to server params
+    # copy relevant settings to server params
     server_params[1]["poses_qos_deadline"] = motion_capture_params["topics"]["poses"]["qos"]["deadline"]
 
     # teleop params

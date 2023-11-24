@@ -16,7 +16,7 @@ robots:
     #       vars: ["acc.x", "acc.y", "acc.z"]
   cf02:
     enabled: true
-    uri: radio://0/80/2M/E7E7E7E702
+    uri: radio://1/100/2M/E7E7E7E702
     initial_position: [-0.4, 0.4, 0]
     type: cf21  # see robot_types
     # firmware_params:
@@ -29,7 +29,7 @@ robots:
     #       frequency: 1
     #       vars: ["acc.x", "acc.y", "acc.z"]
   cf03:
-    enabled: false
+    enabled: true
     uri: radio://0/80/2M/E7E7E7E703
     initial_position: [0.4, 0.4, 0]
     type: cf21  # see robot_types
@@ -43,8 +43,8 @@ robots:
     #       frequency: 1
     #       vars: ["acc.x", "acc.y", "acc.z"]
   cf04:
-    enabled: false
-    uri: radio://0/80/2M/E7E7E7E704
+    enabled: true
+    uri: radio://1/100/2M/E7E7E7E704
     initial_position: [0.4, -0.4, 0]
     type: cf21  # see robot_types
     # firmware_params:
@@ -72,7 +72,7 @@ robots:
     #       vars: ["acc.x", "acc.y", "acc.z"]
   cf06:
     enabled: false
-    uri: radio://0/80/2M/E7E7E7E706
+    uri: radio://1/100/2M/E7E7E7E706
     initial_position: [-0.8, 0, 0] # [-0.4, -0.4, 0]
     type: cf21  # see robot_types
     # firmware_params:
@@ -100,7 +100,7 @@ robots:
     #       vars: ["acc.x", "acc.y", "acc.z"]
   cf08:
     enabled: false
-    uri: radio://0/80/2M/E7E7E7E708
+    uri: radio://1/100/2M/E7E7E7E708
     initial_position: [0.8, 0, 0]
     type: cf21  # see robot_types
     # firmware_params:
@@ -172,9 +172,9 @@ all:
       pitch_kd: 17
     colAv:
       enable: 1
-      ellipsoidX: 0.10
-      ellipsoidY: 0.10
-      ellipsoidZ: 0.50
+      ellipsoidX: 0.15
+      ellipsoidY: 0.15
+      ellipsoidZ: 0.30
 
     # ring:
     #   effect: 16 # 6: double spinner, 7: solid color, 16: packetRate
