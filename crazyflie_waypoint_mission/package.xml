@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>crazyflie_flight_path</name>
+  <name>crazyflie_waypoint_mission</name>
   <version>0.0.0</version>
   <description>Accumulation of scripts to test out different methods of coordinating the crazyflies movement</description>
   <maintainer email="user@todo.todo">user</maintainer>
