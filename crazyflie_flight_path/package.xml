@@ -4,7 +4,7 @@
   <name>crazyflie_flight_path</name>
   <version>0.0.0</version>
   <description>Accumulation of scripts to test out different methods of coordinating the crazyflies movement</description>
-  <maintainer email="TODO">TODO</maintainer>
+  <maintainer email="user@todo.todo">user</maintainer>
   <license>MIT</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
