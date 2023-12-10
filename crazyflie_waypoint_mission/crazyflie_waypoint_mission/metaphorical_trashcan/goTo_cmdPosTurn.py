@@ -9,6 +9,8 @@ allcfs = swarm.allcfs
 class flying_utility:
     def __init__(self):
         self.time_fly = 0.0
+        self.step_size = 0.0
+        self.time_per_step = 0.0
         # initiate array of swarm positions
         self.swarm_pos = np.zeros(3)
         self.heading = 0.0
@@ -45,39 +47,37 @@ class flying_utility:
 
         return rotated_pos
     
-    def turn_swarm_in_place_left(self, desired_heading, step_size, time_per_step):
+    def turn_swarm_in_place_left(self, desired_heading):
         print("turn_swarm_in_place_left: turn left / counterclockwise")
-        for temporary_heading in np.arange(self.heading, (desired_heading + step_size), step_size):
+        for temporary_heading in np.arange(self.heading, (desired_heading + self.step_size), self.step_size):
             for idx, cf in enumerate(allcfs.crazyflies):
-                self.cf_pos[idx] = self.rotation_matrix(step_size, self.cf_pos[idx])
-                cf.goTo(self.cf_pos[idx], temporary_heading, time_per_step)
-            timeHelper.sleep(time_per_step)
+                self.cf_pos[idx] = self.rotation_matrix(self.step_size, self.cf_pos[idx])
+                cf.cmdPosition(self.cf_pos[idx], temporary_heading)
+            timeHelper.sleep(self.time_per_step)
 
-    def turn_swarm_in_place_right(self, desired_heading, step_size, time_per_step):
+    def turn_swarm_in_place_right(self, desired_heading):
         print("turn_swarm_in_place_right: turn right / clockwise")
-        for temporary_heading in np.arange(self.heading, (desired_heading - step_size), -step_size):
+        for temporary_heading in np.arange(self.heading, (desired_heading - self.step_size), -self.step_size):
             for idx, cf in enumerate(allcfs.crazyflies):
-                self.cf_pos[idx] = self.rotation_matrix(-step_size, self.cf_pos[idx])
-                cf.goTo(self.cf_pos[idx], temporary_heading, time_per_step)
-            timeHelper.sleep(time_per_step)
+                self.cf_pos[idx] = self.rotation_matrix(-self.step_size, self.cf_pos[idx])
+                cf.cmdPosition(self.cf_pos[idx], temporary_heading)
+            timeHelper.sleep(self.time_per_step)
 
     def turn_swarm_in_place(self, desired_heading):
-        step_size = 0.1 #rad per time_per_step
-        time_per_step = self.time_fly * step_size * 0.3
         if desired_heading < self.heading and (desired_heading < np.pi and self.heading > np.pi):
             print("turn_swarm_in_place: entered case 1 special")
             desired_heading += (2 * np.pi)
-            self.turn_swarm_in_place_left(desired_heading, step_size, time_per_step)
+            self.turn_swarm_in_place_left(desired_heading)
         elif desired_heading > self.heading and (desired_heading > np.pi and self.heading < np.pi):
             print("turn_swarm_in_place: entered case 2 special")
             desired_heading -= (2 * np.pi)
-            self.turn_swarm_in_place_right(desired_heading, step_size, time_per_step)
+            self.turn_swarm_in_place_right(desired_heading)
         elif desired_heading > self.heading:
             print("turn_swarm_in_place: entered case 1")
-            self.turn_swarm_in_place_left(desired_heading, step_size, time_per_step)
+            self.turn_swarm_in_place_left(desired_heading)
         elif desired_heading < self.heading:
             print("turn_swarm_in_place: entered case 2")
-            self.turn_swarm_in_place_right(desired_heading, step_size, time_per_step)
+            self.turn_swarm_in_place_right(desired_heading)
         
     def fly(self, desired_swarm_pos):
         print(f"fly: swarm_pos: {self.swarm_pos} and desired_swarm_pos: {desired_swarm_pos}")
@@ -87,6 +87,7 @@ class flying_utility:
         vector_to_desired_swarm_pos = np.array([vector_to_desired_swarm_pos_x, vector_to_desired_swarm_pos_y, 0])
         self.turn_swarm_in_place(desired_heading)
         for idx, cf in enumerate(allcfs.crazyflies):
+            cf.notifySetpointsStop() # stop the mode where the cf expects setpoints at a fast rate, e.g. as in turn_swarm_in_place_right()
             self.cf_pos[idx] += vector_to_desired_swarm_pos
             self.cf_pos[idx][2] = desired_swarm_pos[2]
             cf.goTo(self.cf_pos[idx], desired_heading, self.time_fly)
@@ -109,6 +110,8 @@ def main():
     # time
     time = 4
     fly_util.time_fly = 5
+    fly_util.step_size = 0.001 #rad per time_per_step
+    fly_util.time_per_step = fly_util.time_fly * fly_util.step_size * 1
 
     timeHelper.sleep(10)
 

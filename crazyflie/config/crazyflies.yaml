@@ -29,7 +29,7 @@ robots:
     #       frequency: 1
     #       vars: ["acc.x", "acc.y", "acc.z"]
   cf03:
-    enabled: true
+    enabled: false
     uri: radio://0/80/2M/E7E7E7E703
     initial_position: [0.4, 0.4, 0]
     type: cf21  # see robot_types
@@ -43,7 +43,7 @@ robots:
     #       frequency: 1
     #       vars: ["acc.x", "acc.y", "acc.z"]
   cf04:
-    enabled: true
+    enabled: false
     uri: radio://1/100/2M/E7E7E7E704
     initial_position: [0.4, -0.4, 0]
     type: cf21  # see robot_types
