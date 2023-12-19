@@ -62,8 +62,8 @@ class flying_utility:
             timeHelper.sleep(time_per_step)
 
     def turn_swarm_in_place(self, desired_heading):
-        step_size = 0.1 #rad per time_per_step
-        time_per_step = self.time_fly * step_size * 0.3
+        step_size = 0.1 # rad per time_per_step
+        time_per_step = 10 * step_size # self.time_fly * step_size * 0.5
         
         # making sure to always turn in the direction of smaller relative angle between actual and desired heading
         if desired_heading < self.heading and (desired_heading < np.pi and self.heading > np.pi):
@@ -101,18 +101,18 @@ class flying_utility:
 def main():
     fly_util = flying_utility()
     
-    # waypoints
-    home_hover = np.array([0, 0, 0.5])
-    start = np.array([-1, 0, 1])
-    pos1 = np.array([0, 1, 1.2])
-    pos2 = np.array([0, -1, 0.5])
-    end = np.array([1, 0, 1])
+    # define waypoints
+    home_hover = np.array([0, 0, 1.0])
+    end = np.array([-2.5, 0, 1.7])
+    pos1 = np.array([0, 1, 0.5])
+    pos2 = np.array([0, -1, 1.5])
+    start = np.array([1.0, 0, 0.7])
 
-    # time
-    time = 4
-    fly_util.time_fly = 5
+    # time given for actions
+    time = 3 # takeoff/landing
+    fly_util.time_fly = 20 # maneuvers (Point A -> B)
 
-    timeHelper.sleep(10)
+    timeHelper.sleep(10) # timer for getting ready to film
 
     # takeoff
     height = 0.5
@@ -121,14 +121,14 @@ def main():
     print("main: takeoff")
     timeHelper.sleep(time)
 
-    # mission
+    # plan a mission using the waypoints
     fly_util.fly(home_hover)
-    fly_util.fly(start)
+    # fly_util.fly(start)
     # fly_util.fly(pos1)
     # fly_util.fly(pos2)
     fly_util.fly(end)
 
-    # prepare to land
+    # prepare to land (THIS IS WITH collision_avoidance.c ACTIVATED! The cf's paths will cross!)
     fly_util.fly(home_hover)
     for idx, cf in enumerate(allcfs.crazyflies):
             fly_util.cf_pos[idx] = cf.initialPosition

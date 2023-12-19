@@ -15,7 +15,7 @@ robots:
     #       frequency: 1
     #       vars: ["acc.x", "acc.y", "acc.z"]
   cf02:
-    enabled: true
+    enabled: false
     uri: radio://1/100/2M/E7E7E7E702
     initial_position: [-0.4, 0.4, 0]
     type: cf21  # see robot_types
@@ -172,10 +172,11 @@ all:
       pitch_kd: 17
     colAv:
       enable: 1
-      ellipsoidX: 0.15
-      ellipsoidY: 0.15
-      ellipsoidZ: 0.30
-
+      ellipsoidX: 0.5
+      ellipsoidY: 0.5
+      ellipsoidZ: 0.9
+      horizon: 5.0
+      maxSpeed: 0.1
     # ring:
     #   effect: 16 # 6: double spinner, 7: solid color, 16: packetRate
     #   solidBlue: 255 # if set to solid color
